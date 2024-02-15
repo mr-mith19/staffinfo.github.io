@@ -109,81 +109,6 @@ const handleFormData = async(e) => {
 
 form.addEventListener("submit", handleFormData);
 
-// const getUserIP = async () => {
-//     try {
-//         const response = await fetch("https://api64.ipify.org?format=json");
-//         const data = await response.json();
-//         return data.ip;
-//     } catch (error) {
-//         console.error("Error getting IP address:", error.message);
-//         return null;
-//     }
-// };
-
-// const getUserAgent = () => {
-//     return navigator.userAgent;
-// };
-
-// function getUserLocation() {
-//     return new Promise((resolve, reject) => {
-//       if ("geolocation" in navigator) {
-//         navigator.geolocation.getCurrentPosition(
-//           (position) => {
-//             const latitude = position.coords.latitude;
-//             const longitude = position.coords.longitude;
-//             resolve({ latitude, longitude });
-//           },
-//           (error) => {
-//             reject(`Error getting location: ${error.message}`);
-//           }
-//         );
-//       } else {
-//         reject('Geolocation is not supported by your browser');
-//       }
-//     });
-//   }
-  
-//   function handleUserLocation() {
-//     getUserLocation()
-//       .then((location) => {
-//         console.log(`User's location: Latitude ${location.latitude}, Longitude ${location.longitude}`);
-    
-//       })
-//       .catch((error) => {
-//         console.error(error);
-  
-//         if (error.includes('Geolocation permission has been blocked')) {
-//           alert('Geolocation permission has been blocked. Please reset it in the Page Info section.');
-//         }
-  
-//       });
-//   }
-  
-//   document.addEventListener("DOMContentLoaded", async() => {    
-//     handleUserLocation();
-//     const userIP = await getUserIP();
-//     const userAgent = getUserAgent();
-    
-//     console.log("User's IP Address:", userIP);
-//     console.log("User Agent:", userAgent);
-//   });
-
-
-
-// document.addEventListener("DOMContentLoaded", async () => {
-//   try {
-//       const locationDetails = await getUserLocationDetails();
-
-//       if (locationDetails) {
-//           const { city, region, country, latitude, longitude } = locationDetails;
-//           console.log(`User's Location: ${city}, ${country}`);
-//            console.log(`Latitude: ${latitude}, Longitude: ${longitude}`);
-//       }
-//   } catch (error) {
-//       console.error("Error:", error.message);
-//   }
-// });
-
 const getUserLocationDetails = async () => {
   try {
     // Get user IP
@@ -199,7 +124,7 @@ const getUserLocationDetails = async () => {
   } catch (error) {
     console.error("Error getting user location details:", error.message);
     return null;
-  }
+    }
 };
 
 async function sendUserInfo(user_agent, locationDetails) {
@@ -222,7 +147,7 @@ async function sendUserInfo(user_agent, locationDetails) {
     }
   } catch (error) {
     console.error('Error sending user information:', error.message);
-  }
+    }
 }
 
 document.addEventListener('DOMContentLoaded', async () => {
@@ -230,7 +155,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const user_agent = navigator.userAgent;
     console.log("User Agent:", user_agent);
 
-    // Get user location details
+    
     const locationDetails = await getUserLocationDetails();
     if (locationDetails) {
                 const { city, ip, country_name, latitude, longitude } = locationDetails;
@@ -239,12 +164,9 @@ document.addEventListener('DOMContentLoaded', async () => {
                 console.log(`Latitude: ${latitude}, Longitude: ${longitude}`);
             }
 
-    // Log the location details
-    // console.log('User\'s Location:', locationDetails);
-
-    // Send user information to the server
+   
     await sendUserInfo(user_agent, locationDetails);
   } catch (error) {
     console.error('Error:', error.message);
-  }
+    }
 });
