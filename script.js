@@ -111,12 +111,11 @@ form.addEventListener("submit", handleFormData);
 
 const getUserLocationDetails = async () => {
   try {
-    // Get user IP
+    
     const ipResponse = await fetch("https://api64.ipify.org?format=json");
     const ipData = await ipResponse.json();
     const userIP = ipData.ip;
 
-    // Get location details based on IP
     const locationResponse = await fetch(`https://ipapi.co/${userIP}/json/`);
     const locationData = await locationResponse.json();
 
