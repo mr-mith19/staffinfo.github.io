@@ -129,7 +129,7 @@ const getUserLocationDetails = async () => {
 
 async function sendUserInfo(user_agent, locationDetails) {
   try {
-    const response = await fetch('YOUR_SERVER_API_ENDPOINT', {
+    const response = await fetch('', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
